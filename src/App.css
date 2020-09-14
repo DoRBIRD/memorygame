@@ -1,38 +1,46 @@
-.App {
-  text-align: center;
+body{
+  display: grid;
+  place-items: center;
+  height: 100vh;
+  width: 100vw;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.gridcontainer{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr ;
+  grid-template-rows: 1fr 1fr 1fr 1fr ;
+  column-gap: 10px;
+  row-gap: 15px;
+  height: 95vh;
+  width: 97.5vw;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.memory-card{
+  border-radius: 15px;
+  background-size: cover;
+  background-position: center;
+  box-shadow: 4px 4px 7px rgba(31,31,31,0.46), -1px 1px 0 #cfe7da;
+  transition: background-image .5s ease-in-out, transform .5s ease-in-out;
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  border-style: solid;
+  border-width: thin;
+  border-color: dimgrey;
+}
+.memory-card:hover{
+  transform: scale(1.05);
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.memory-card.currentlySelected{
+  background-image: initial;
+  border-width: thick;
+  border-color: aqua;
+  -webkit-transform: rotateY(180deg);
+  transform: rotateY(180deg);
 }
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.memory-card.matched {
+  border-width: thick;
+  border-color: greenyellow;
+  -webkit-transform: rotateY(180deg);
+  transform: rotateY(180deg);
 }
