@@ -15,18 +15,12 @@ class MemoryGridComponent extends React.Component<any, any>{
             isPaused: false,
             turns: 0,
         };
-        this.onCardClicked = this.onCardClicked.bind(this);
         this.CardListComponent = this.CardListComponent.bind(this);
         this.HeaderComponent = this.HeaderComponent.bind(this);
-        this.restartGame = this.restartGame.bind(this);
     }
 
-    restartGame(){
-        this.setState({isPaused: true});
-        this.setState({curGuess: -1});
-        this.setState({curGuessIndex: -1});
-        this.setState({turns: 0});
-
+    restartGame = ()=>{
+        this.setState({isPaused: true, curGuess: -1, curGuessIndex: -1, turns: 0});
 
         let cards:Array<MemoryCard> = this.state.cards;
         for (let i = 0; i < cards.length; i++) {
@@ -35,9 +29,7 @@ class MemoryGridComponent extends React.Component<any, any>{
         }
 
         this.shuffle(cards);
-        this.setState({cards: cards});
-
-        this.setState({isPaused: false});
+        this.setState({cards: cards,isPaused: false});
     }
 
     shuffle(array: any[]) {
@@ -47,7 +39,7 @@ class MemoryGridComponent extends React.Component<any, any>{
         }
     }
 
-    onCardClicked(index:number){
+    onCardClicked = (index:number) => {
         let cards:Array<MemoryCard> = this.state.cards;
         let clickedCard:MemoryCard = cards[index];
         let prevClickedCard:MemoryCard = cards[this.state.curGuessIndex];
@@ -55,30 +47,23 @@ class MemoryGridComponent extends React.Component<any, any>{
         if (!this.state.isPaused && !clickedCard.selected && !clickedCard.matched){
             clickedCard.selected = true;
             if (this.state.curGuess === -1){
-                this.setState({curGuess: clickedCard.id});
-                this.setState({curGuessIndex: index});
+                this.setState({curGuess: clickedCard.id, curGuessIndex: index});
             }else if (this.state.curGuess === clickedCard.id){
-                this.setState({turns: this.state.turns + 1});
                 clickedCard.selected = false;
                 prevClickedCard.selected = false;
                 clickedCard.matched = true;
                 prevClickedCard.matched = true;
-                this.setState({curGuess: -1});
-                this.setState({curGuessIndex: -1});
+                this.setState({curGuess: -1,curGuessIndex: -1, turns: this.state.turns + 1});
             }else {
-                this.setState({isPaused: true});
-                this.setState({turns: this.state.turns + 1});
+                this.setState({isPaused: true, turns: this.state.turns + 1});
                 setTimeout(()=>{
                     clickedCard.selected = false;
                     prevClickedCard.selected = false;
-                    this.setState({curGuess: -1});
-                    this.setState({curGuessIndex: -1});
-                    this.setState({isPaused: false});
+                    this.setState({curGuess: -1, curGuessIndex: -1, isPaused: false});
                 }, 1000);
             }
         }
         this.setState({cards: cards});
-        this.render()
     }
 
     HeaderComponent(props: any) {
@@ -89,7 +74,7 @@ class MemoryGridComponent extends React.Component<any, any>{
             <div className={'header'}>
                 <p id={'title'}>MemoryGame</p>
                 <p>Number of Taken Turns: {turns}</p>
-                <button className={'restartBtn'} onClick={onclick} disabled={true}>Restart *coming soon*</button>
+                <button className={'restartBtn'} onClick={onclick}>Restart</button>
             </div>
         );
     }
