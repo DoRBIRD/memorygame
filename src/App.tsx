@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import {MemoryCard} from "./MemoryCard";
-import MemoryGridComponent from "./MemoryGridComponent";
+import MemoryGameComponent from "./MemoryGridComponent";
 
 let cards: MemoryCard[] = []
 let card:MemoryCard;
@@ -60,22 +60,11 @@ cards.push(card)
 https://images.unsplash.com/photo-1591322128589-bd876a42c8ee?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80
  */
 
-shuffle(cards)
-
-
-function shuffle(array: any[]) {
-  for (let i = array.length - 1; i > 0; i--) {
-    let j = Math.floor(Math.random() * (i + 1));
-    [array[i], array[j]] = [array[j], array[i]];
-  }
-}
 
 
 function App() {
   return (
-    <div>
-      <MemoryGridComponent cards = {cards}/>
-    </div>
+      <MemoryGameComponent cards = {cards}/>
   );
 }
 

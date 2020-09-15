@@ -3,10 +3,6 @@ import {MemoryCard} from "./MemoryCard";
 
 
 class MemoryCardComponent extends React.Component<any, any> {
-    constructor(props:any) {
-        super(props);
-        //this.handleClick = this.handleClick.bind(this);
-    }
     card: MemoryCard = this.props.card
     index: number = this.props.index;
 

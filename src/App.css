@@ -1,8 +1,37 @@
-body{
-  display: grid;
+:root{
+  font-size: large;
+}
+#root{
+  width: 100%;
+  font-family: 'Kufam', cursive;
+}
+
+.memoryGame{
+  display: flex;
+  flex-direction: column;
+}
+
+.header{
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background: linear-gradient(0deg, #292929, #7a7a7a);
+  color: azure;
+  padding: 0 2rem;
   place-items: center;
-  height: 100vh;
-  width: 100vw;
+  margin-bottom: .5rem;
+}
+
+#title{
+  font-size: 1.5rem;
+}
+
+.restartBtn{
+  padding: 1em 1.5em;
+  background-color: azure;
 }
 
 .gridcontainer{
@@ -11,8 +40,17 @@ body{
   grid-template-rows: 1fr 1fr 1fr 1fr ;
   column-gap: 10px;
   row-gap: 15px;
-  height: 95vh;
+  height: 88vh;
   width: 97.5vw;
+  align-self: center;
+}
+
+
+
+@keyframes AnimationName {
+  0%{background-position:0% 43%}
+  50%{background-position:100% 58%}
+  100%{background-position:0% 43%}
 }
 
 .memory-card{
