@@ -14,13 +14,12 @@ class MemoryGridComponent extends React.Component<any, any>{
             cards: props.cards as Array<MemoryCard>,
             isPaused: false,
             turns: 0,
+            win: false,
         };
-        this.CardListComponent = this.CardListComponent.bind(this);
-        this.HeaderComponent = this.HeaderComponent.bind(this);
     }
 
     restartGame = ()=>{
-        this.setState({isPaused: true, curGuess: -1, curGuessIndex: -1, turns: 0});
+        this.setState({isPaused: true, curGuess: -1, curGuessIndex: -1, turns: 0, won: false});
 
         let cards:Array<MemoryCard> = this.state.cards;
         for (let i = 0; i < cards.length; i++) {
@@ -63,28 +62,45 @@ class MemoryGridComponent extends React.Component<any, any>{
                 }, 1000);
             }
         }
-        this.setState({cards: cards});
+        let hasWOn = this.checkWinCon()
+        console.log(hasWOn)
+
+        this.setState({cards: cards, won: hasWOn});
     }
 
-    HeaderComponent(props: any) {
-        const turns = props.turns;
-        const onclick = this.restartGame;
+    checkWinCon = () => {
+        for (let i = 0; i < this.state.cards.length; i++) {
+            if (!this.state.cards[i].matched)
+                return false;
+        }
+        return true;
+    }
 
+    WinOverlayComponent = (props: any) => {
         return(
-            <div className={'header'}>
-                <p id={'title'}>MemoryGame</p>
-                <p>Number of Taken Turns: {turns}</p>
-                <button className={'restartBtn'} onClick={onclick}>Restart</button>
+            <div className={'winOverlay ' + (props.hasWon ? "shown":"" ) }>
+                <div className={'inner'}>
+                    <h2>You won!</h2>
+                    <p>Number of Taken Turns: {props.turns}</p>
+                    <button className={'restartBtn'} onClick={this.restartGame}>Restart</button>
+                </div>
             </div>
         );
     }
 
-    CardListComponent(props: any) {
-        const card = props.value;
-        const index = props.index;
-
+    HeaderComponent = (props: any) => {
         return(
-            <MemoryCardComponent card={card} index = {index} onCardClicked = {this.onCardClicked}/>
+            <div className={'header'}>
+                <p id={'title'}>MemoryGame</p>
+                <p>Number of Taken Turns: {props.turns}</p>
+                <button className={'restartBtn'} onClick={this.restartGame}>Restart</button>
+            </div>
+        );
+    }
+
+    CardListComponent = (props: any) => {
+        return(
+            <MemoryCardComponent card={props.value} index = {props.index} onCardClicked = {this.onCardClicked}/>
         );
     }
 
@@ -100,6 +116,7 @@ class MemoryGridComponent extends React.Component<any, any>{
                 <div className={"gridcontainer"}>
                     {gridCards}
                 </div>
+                <this.WinOverlayComponent hasWon={this.state.won} turns={this.state.turns}/>
             </div>
         );
     }

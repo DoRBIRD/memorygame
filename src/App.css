@@ -82,3 +82,30 @@
   -webkit-transform: rotateY(180deg);
   transform: rotateY(180deg);
 }
+
+.winOverlay {
+  display: none;
+  background: rgba(0, 0, 0, 0.6);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.winOverlay.shown{
+  display:grid;
+  place-items: center;
+}
+.winOverlay > .inner{
+  width: 15rem;
+  height: 9rem;
+  background-color: #292929;
+  display: flex;
+  flex-direction: column;
+  padding: 3rem;
+  border-radius: 15px;
+  color: azure;
+}
+.winOverlay > .inner > h2, p{
+  vertical-align: center;
+}
