@@ -2,7 +2,7 @@ import {MemoryCard} from "./MemoryCard";
 import React from "react";
 import MemoryCardComponent from "./MemoryCardComponent";
 
-class MemoryGridComponent extends React.Component<any, any>{
+class MemoryGameComponent extends React.Component<any, any>{
 
     constructor(props:any) {
         super(props);
@@ -81,7 +81,7 @@ class MemoryGridComponent extends React.Component<any, any>{
             <div className={'winOverlay ' + (props.hasWon ? "shown":"" ) }>
                 <div className={'inner'}>
                     <h2>You won!</h2>
-                    <p>Number of Taken Turns: {props.turns}</p>
+                    <p>You needed {props.turns} guesses</p>
                     <button className={'restartBtn'} onClick={this.restartGame}>Restart</button>
                 </div>
             </div>
@@ -121,4 +121,4 @@ class MemoryGridComponent extends React.Component<any, any>{
         );
     }
 }
-export default MemoryGridComponent
+export default MemoryGameComponent

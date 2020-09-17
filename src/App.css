@@ -45,8 +45,6 @@
   align-self: center;
 }
 
-
-
 @keyframes AnimationName {
   0%{background-position:0% 43%}
   50%{background-position:100% 58%}
@@ -96,6 +94,7 @@
   display:grid;
   place-items: center;
 }
+
 .winOverlay > .inner{
   width: 15rem;
   height: 9rem;

@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import {MemoryCard} from "./MemoryCard";
-import MemoryGameComponent from "./MemoryGridComponent";
+import MemoryGameComponent from "./MemoryGameComponent";
 
 let cards: MemoryCard[] = []
 let card:MemoryCard;
@@ -55,11 +55,6 @@ card = {id: 9, name: "test9", imagePath:"https://images.unsplash.com/photo-15990
 cards.push(card)
 card = {...card}
 cards.push(card)
-
-/*
-https://images.unsplash.com/photo-1591322128589-bd876a42c8ee?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80
- */
-
 
 
 function App() {
